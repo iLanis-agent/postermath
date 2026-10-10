@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poster math - sharpness, crop check, mat window</title>
+<style>
+  :root { --ink:#0f211a; --accent:#2f6b4f; --paper:#f6f9f7; --card:#ffffff; --line:#d8e4dc; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Georgia, 'Times New Roman', serif; background:var(--paper); color:var(--ink); }
+  header { padding:2rem 1.25rem 1rem; max-width:960px; margin:0 auto; }
+  h1 { font-size:1.9rem; margin:0 0 .35rem; }
+  header p { margin:.25rem 0; color:#2e5143; max-width:46rem; line-height:1.45; }
+  .norms { font-size:.9rem; color:#3d6251; margin-top:.6rem; }
+  main { max-width:960px; margin:0 auto; padding:0 1.25rem 3rem; display:grid; gap:1.25rem; }
+  @media (min-width:820px){ main { grid-template-columns:1fr 1fr 1fr; } }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.1rem 1.25rem; }
+  .card h2 { font-size:1.15rem; margin:.1rem 0 .5rem; }
+  .card p.desc { font-size:.9rem; color:#3d6251; margin:.2rem 0 .8rem; line-height:1.4; }
+  label { display:block; font-size:.85rem; margin:.55rem 0 .15rem; color:#2a4a3b; }
+  input { width:100%; padding:.45rem .5rem; font-size:1rem; border:1px solid var(--line); border-radius:6px; font-family:inherit; background:#fff; }
+  button { margin-top:.8rem; width:100%; padding:.55rem; font-size:1rem; font-family:inherit; background:var(--accent); color:#fff; border:0; border-radius:6px; cursor:pointer; }
+  button:hover { background:#24543d; }
+  .out { margin-top:.9rem; font-size:.95rem; line-height:1.5; min-height:3.2rem; }
+  .err { color:#a02323; }
+  footer { max-width:960px; margin:0 auto; padding:0 1.25rem 2.5rem; font-size:.85rem; color:#6e9283; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Poster math</h1>
+  <p>Check the real dpi before you pay, see what the crop cuts, and hand the framer exact numbers. Exact arithmetic, every borrowed number labeled.</p>
+  <p class="norms">Labeled norms: 300 dpi crisp / 150-300 fine at arm's length / 100-150 poster distance / under 100 visible pixels; mat overlap defaults to 0.5 cm per side. Print-shop heuristics, not guarantees.</p>
+</header>
+<main>
+  <section class="card" id="sharp">
+    <h2>Print sharpness</h2>
+    <p class="desc">Pixels and print width become the true dpi and the widest crisp size.</p>
+    <label for="s-pw">Image width (pixels)</label>
+    <input id="s-pw" type="number" step="1" min="1" value="6000">
+    <label for="s-ph">Image height (pixels)</label>
+    <input id="s-ph" type="number" step="1" min="1" value="4000">
+    <label for="s-w">Print width (cm)</label>
+    <input id="s-w" type="number" step="0.5" min="1" value="60">
+    <button id="s-go">Check the sharpness</button>
+    <div class="out" id="s-out"></div>
+  </section>
+
+  <section class="card" id="crop">
+    <h2>Crop check</h2>
+    <p class="desc">Image shape against print shape - exact fit, or what the crop cuts away.</p>
+    <label for="c-pw">Image width (pixels)</label>
+    <input id="c-pw" type="number" step="1" min="1" value="4000">
+    <label for="c-ph">Image height (pixels)</label>
+    <input id="c-ph" type="number" step="1" min="1" value="6000">
+    <label for="c-w">Print width (cm)</label>
+    <input id="c-w" type="number" step="0.5" min="1" value="60">
+    <label for="c-h">Print height (cm)</label>
+    <input id="c-h" type="number" step="0.5" min="1" value="40">
+    <button id="c-go">Check the crop</button>
+    <div class="out" id="c-out"></div>
+  </section>
+
+  <section class="card" id="mat">
+    <h2>Mat window</h2>
+    <p class="desc">Print size, overlap and border become the window to cut and the outer size.</p>
+    <label for="m-w">Print width (cm)</label>
+    <input id="m-w" type="number" step="0.5" min="1" value="60">
+    <label for="m-h">Print height (cm)</label>
+    <input id="m-h" type="number" step="0.5" min="1" value="40">
+    <label for="m-o">Mat overlap per side (cm)</label>
+    <input id="m-o" type="number" step="0.1" min="0.1" value="0.5">
+    <label for="m-b">Mat border (cm)</label>
+    <input id="m-b" type="number" step="0.5" min="0" value="5">
+    <button id="m-go">Size the mat</button>
+    <div class="out" id="m-out"></div>
+  </section>
+</main>
+<footer>Built by the app factory. <a href="index.html">About</a> &middot; <a href="https://github.com/iLanis-agent/postermath">Source</a></footer>
+<script src="engine.js"></script>
+<script>
+function num(id){ return parseFloat(document.getElementById(id).value); }
+function show(id, r, render){
+  var el = document.getElementById(id);
+  if (r.error) { el.textContent = r.error; el.classList.add('err'); }
+  else { el.textContent = render(r); el.classList.remove('err'); }
+}
+document.getElementById('s-go').addEventListener('click', function(){
+  show('s-out', PosterMath.sharpness(num('s-pw'),num('s-ph'),num('s-w')), PosterMath.renderSharp);
+});
+document.getElementById('c-go').addEventListener('click', function(){
+  show('c-out', PosterMath.cropCheck(num('c-pw'),num('c-ph'),num('c-w'),num('c-h')), PosterMath.renderCrop);
+});
+document.getElementById('m-go').addEventListener('click', function(){
+  show('m-out', PosterMath.matWindow(num('m-w'),num('m-h'),num('m-o'),num('m-b')), PosterMath.renderMat);
+});
+</script>
+</body>
+</html>
