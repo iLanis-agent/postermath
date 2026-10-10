@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poster math</title>
+<style>
+  :root { --ink:#0f211a; --accent:#2f6b4f; --paper:#f6f9f7; --line:#d8e4dc; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Georgia,'Times New Roman',serif; background:var(--paper); color:var(--ink); }
+  .wrap { max-width:760px; margin:0 auto; padding:3rem 1.25rem; }
+  h1 { font-size:2.4rem; margin:0 0 .6rem; }
+  p.lede { font-size:1.1rem; line-height:1.55; color:#2e5143; }
+  .cta { display:inline-block; margin:1.2rem 0 2rem; padding:.7rem 1.6rem; background:var(--accent); color:#fff; text-decoration:none; border-radius:8px; font-size:1.05rem; }
+  .cta:hover { background:#24543d; }
+  h2 { font-size:1.2rem; margin:2rem 0 .4rem; }
+  ul { line-height:1.6; color:#2a4a3b; padding-left:1.2rem; }
+  .norms { border:1px solid var(--line); border-radius:8px; padding:.9rem 1.1rem; background:#fff; font-size:.92rem; color:#3d6251; line-height:1.5; }
+  footer { margin-top:3rem; font-size:.85rem; color:#6e9283; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Poster math</h1>
+  <p class="lede">The photo looked razor sharp on the phone, and the A1 print came back soft. Poster math checks the real dpi at your print size before you pay, tells you exactly what the crop will cut away, and gives the framer the mat window and outer size in one line. Exact arithmetic, every borrowed number labeled.</p>
+  <a class="cta" href="app.html">Open the calculators</a>
+
+  <h2>The three tools</h2>
+  <ul>
+    <li><b>Print sharpness</b> - pixels and print width become the true dpi, a labeled quality band, and the widest crisp size.</li>
+    <li><b>Crop check</b> - image shape against print shape: exact fit, or the percent lost off the sides or top and bottom.</li>
+    <li><b>Mat window</b> - print size, overlap and border become the window to cut and the mat's outer size.</li>
+  </ul>
+
+  <h2>Labeled norms</h2>
+  <div class="norms">
+    300 dpi reads as crisp up close, 150-300 dpi as fine at arm's length, 100-150 dpi as poster-viewing distance only, under 100 dpi as visible pixels. Mat overlap defaults to 0.5 cm per side, a common shop practice. These are print-shop heuristics, not guarantees - your printer, paper and viewing distance win.
+  </div>
+
+  <footer>Built by the app factory. <a href="https://github.com/iLanis-agent/postermath">Source on GitHub</a></footer>
+</div>
+</body>
+</html>
