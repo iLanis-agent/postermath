@@ -1,0 +1,567 @@
+[
+ {
+  "tool": "sharp",
+  "args": [
+   6000,
+   4000,
+   60
+  ],
+  "expect": {
+   "dpi": 254,
+   "band": "fine at arm's length",
+   "maxCrispW": 50.8
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   6000,
+   4000,
+   50
+  ],
+  "expect": {
+   "dpi": 305,
+   "band": "crisp up close",
+   "maxCrispW": 50.8
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   6000,
+   4000,
+   50.8
+  ],
+  "expect": {
+   "dpi": 300,
+   "band": "crisp up close",
+   "maxCrispW": 50.8
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   6000,
+   4000,
+   51
+  ],
+  "expect": {
+   "dpi": 299,
+   "band": "fine at arm's length",
+   "maxCrispW": 50.8
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   3000,
+   2000,
+   76.2
+  ],
+  "expect": {
+   "dpi": 100,
+   "band": "poster-viewing distance only",
+   "maxCrispW": 25.4
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   3000,
+   2000,
+   76.5
+  ],
+  "expect": {
+   "dpi": 100,
+   "band": "poster-viewing distance only",
+   "maxCrispW": 25.4
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   2400,
+   1600,
+   61
+  ],
+  "expect": {
+   "dpi": 100,
+   "band": "poster-viewing distance only",
+   "maxCrispW": 20.3
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   1200,
+   800,
+   60
+  ],
+  "expect": {
+   "dpi": 51,
+   "band": "visible pixels - print smaller or upscale",
+   "maxCrispW": 10.2
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   8000,
+   6000,
+   40
+  ],
+  "expect": {
+   "dpi": 508,
+   "band": "crisp up close",
+   "maxCrispW": 67.7
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   4500,
+   3000,
+   45.72
+  ],
+  "expect": {
+   "dpi": 250,
+   "band": "fine at arm's length",
+   "maxCrispW": 38.1
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   5184,
+   3456,
+   91.4
+  ],
+  "expect": {
+   "dpi": 144,
+   "band": "poster-viewing distance only",
+   "maxCrispW": 43.9
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   0,
+   4000,
+   60
+  ],
+  "expect": {
+   "error": "pixels must be positive"
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   -6000,
+   4000,
+   60
+  ],
+  "expect": {
+   "error": "pixels must be positive"
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   6000,
+   0,
+   60
+  ],
+  "expect": {
+   "error": "pixels must be positive"
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   6000,
+   4000,
+   0
+  ],
+  "expect": {
+   "error": "print width must be positive"
+  }
+ },
+ {
+  "tool": "sharp",
+  "args": [
+   6000,
+   4000,
+   -10
+  ],
+  "expect": {
+   "error": "print width must be positive"
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   6000,
+   4000,
+   60,
+   40
+  ],
+  "expect": {
+   "fit": "exact fit - nothing cropped",
+   "pct": 0
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   4000,
+   6000,
+   60,
+   40
+  ],
+  "expect": {
+   "fit": "taller than the print - crops 55.6% off the top and bottom",
+   "pct": 55.6
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   6000,
+   4000,
+   60,
+   45
+  ],
+  "expect": {
+   "fit": "wider than the print - crops 11.1% off the sides",
+   "pct": 11.1
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   4000,
+   3000,
+   40,
+   40
+  ],
+  "expect": {
+   "fit": "wider than the print - crops 25% off the sides",
+   "pct": 25.0
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   3000,
+   3000,
+   40,
+   20
+  ],
+  "expect": {
+   "fit": "taller than the print - crops 50% off the top and bottom",
+   "pct": 50.0
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   5000,
+   4000,
+   50,
+   40
+  ],
+  "expect": {
+   "fit": "exact fit - nothing cropped",
+   "pct": 0
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   1920,
+   1080,
+   40,
+   22.5
+  ],
+  "expect": {
+   "fit": "exact fit - nothing cropped",
+   "pct": 0
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   1920,
+   1080,
+   30,
+   30
+  ],
+  "expect": {
+   "fit": "wider than the print - crops 43.8% off the sides",
+   "pct": 43.8
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   2000,
+   1000,
+   10,
+   8
+  ],
+  "expect": {
+   "fit": "wider than the print - crops 37.5% off the sides",
+   "pct": 37.5
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   1000,
+   2000,
+   8,
+   10
+  ],
+  "expect": {
+   "fit": "taller than the print - crops 37.5% off the top and bottom",
+   "pct": 37.5
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   0,
+   4000,
+   60,
+   40
+  ],
+  "expect": {
+   "error": "pixels must be positive"
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   6000,
+   -1,
+   60,
+   40
+  ],
+  "expect": {
+   "error": "pixels must be positive"
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   6000,
+   4000,
+   0,
+   40
+  ],
+  "expect": {
+   "error": "print size must be positive"
+  }
+ },
+ {
+  "tool": "crop",
+  "args": [
+   6000,
+   4000,
+   60,
+   -5
+  ],
+  "expect": {
+   "error": "print size must be positive"
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   60,
+   40,
+   0.5,
+   5
+  ],
+  "expect": {
+   "winW": 59.0,
+   "winH": 39.0,
+   "outerW": 70.0,
+   "outerH": 50.0
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   30,
+   20,
+   0.5,
+   0
+  ],
+  "expect": {
+   "winW": 29.0,
+   "winH": 19.0,
+   "outerW": 30.0,
+   "outerH": 20.0
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   50,
+   70,
+   0.4,
+   7.5
+  ],
+  "expect": {
+   "winW": 49.2,
+   "winH": 69.2,
+   "outerW": 65.0,
+   "outerH": 85.0
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   21,
+   29.7,
+   0.5,
+   3
+  ],
+  "expect": {
+   "winW": 20.0,
+   "winH": 28.7,
+   "outerW": 27.0,
+   "outerH": 35.7
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   91.4,
+   61,
+   0.6,
+   10
+  ],
+  "expect": {
+   "winW": 90.2,
+   "winH": 59.8,
+   "outerW": 111.4,
+   "outerH": 81.0
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   40,
+   40,
+   0.25,
+   4
+  ],
+  "expect": {
+   "winW": 39.5,
+   "winH": 39.5,
+   "outerW": 48.0,
+   "outerH": 48.0
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   10,
+   8,
+   0.5,
+   2
+  ],
+  "expect": {
+   "winW": 9.0,
+   "winH": 7.0,
+   "outerW": 14.0,
+   "outerH": 12.0
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   0,
+   40,
+   0.5,
+   5
+  ],
+  "expect": {
+   "error": "print size must be positive"
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   60,
+   -40,
+   0.5,
+   5
+  ],
+  "expect": {
+   "error": "print size must be positive"
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   60,
+   40,
+   0,
+   5
+  ],
+  "expect": {
+   "error": "overlap must be positive"
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   60,
+   40,
+   -0.5,
+   5
+  ],
+  "expect": {
+   "error": "overlap must be positive"
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   60,
+   40,
+   0.5,
+   -1
+  ],
+  "expect": {
+   "error": "border must not be negative"
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   1,
+   1,
+   0.6,
+   5
+  ],
+  "expect": {
+   "error": "overlap eats the whole print"
+  }
+ },
+ {
+  "tool": "mat",
+  "args": [
+   0.9,
+   2,
+   0.5,
+   1
+  ],
+  "expect": {
+   "error": "overlap eats the whole print"
+  }
+ }
+]
